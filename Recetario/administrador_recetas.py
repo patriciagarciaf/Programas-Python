@@ -16,8 +16,11 @@ def ir_a_menu_principal():
     while eleccion != '6':
         if eleccion == '1':
             ruta_categoria = elegir_categoria()
-            ruta_receta = elegir_receta(ruta_categoria)
-            leer_receta(ruta_receta)
+            if len(list(ruta_categoria.glob('*.txt'))) != 0:
+                ruta_receta = elegir_receta(ruta_categoria)
+                leer_receta(ruta_receta)
+            else:
+                print('No hay recetas en esta categoría')
             volver_salir()
             system('cls')
             break
@@ -37,13 +40,19 @@ def ir_a_menu_principal():
 
         elif eleccion == '4':
             ruta_categoria = elegir_categoria()
-            eliminar_receta(ruta_categoria)
+            if len(list(ruta_categoria.glob('*.txt'))) != 0:
+                eliminar_receta(ruta_categoria)
+            else:
+                print('No hay recetas en esta categoría')
             volver_salir()
             system('cls')
             break
 
         elif eleccion == '5':
-            eliminar_categoria()
+            if len(list(base_recetas.glob('*.txt'))) != 0:
+                eliminar_categoria()
+            else:
+                print('No hay categorías')
             volver_salir()
             system('cls')
             break
